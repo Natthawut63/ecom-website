@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { listProductBy } from "../../api/product";
+import { listProductBy } from "../../api/Product";
 import ProductCart from "../card/ProductCart";
 import SwiperShowProduct from "../../utils/SwiperShowProduct";
 import { SwiperSlide } from "swiper/react";
