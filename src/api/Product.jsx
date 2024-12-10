@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const createProduct = async (token, form) => {
-  return axios.post("http://localhost:5001/api/product", form, {
+  return axios.post("https://ecom-server-chi.vercel.app/api/product", form, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -9,13 +9,13 @@ export const createProduct = async (token, form) => {
 };
 
 export const listProduct = async (count = 20) => {
-  return axios.get("http://localhost:5001/api/products/" + count, {});
+  return axios.get("https://ecom-server-chi.vercel.app/api/products/" + count, {});
 };
 
 export const uploadFiles = async (token, form) => {
   // console.log('form api frontent',form);
   return axios.post(
-    "http://localhost:5001/api/images",
+    "https://ecom-server-chi.vercel.app/api/images",
     {
       image: form,
     },
@@ -30,7 +30,7 @@ export const uploadFiles = async (token, form) => {
 export const removeFiles = async (token, public_id) => {
   // console.log('form api frontent',form);
   return axios.post(
-    "http://localhost:5001/api/removeimages",
+    "https://ecom-server-chi.vercel.app/api/removeimages",
     {
       public_id,
       // {} = key:value
@@ -45,7 +45,7 @@ export const removeFiles = async (token, public_id) => {
 };
 
 export const readProduct = async (token, id) => {
-  return axios.get("http://localhost:5001/api/product/" + id, {
+  return axios.get("https://ecom-server-chi.vercel.app/api/product/" + id, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -53,14 +53,14 @@ export const readProduct = async (token, id) => {
 };
 
 export const updateProduct = async (token, id, form) => {
-  return axios.put("http://localhost:5001/api/product/" + id, form, {
+  return axios.put("https://ecom-server-chi.vercel.app/api/product/" + id, form, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 };
 export const deleteProduct = async (token, id) => {
-  return axios.delete("http://localhost:5001/api/product/" + id, {
+  return axios.delete("https://ecom-server-chi.vercel.app/api/product/" + id, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -68,11 +68,11 @@ export const deleteProduct = async (token, id) => {
 };
 
 export const searchFilters = async (arg) => {
-  return axios.post("http://localhost:5001/api/search/filters", arg);
+  return axios.post("https://ecom-server-chi.vercel.app/api/search/filters", arg);
 };
 
 export const listProductBy = async (sort, order, limit) => {
-  return axios.post("http://localhost:5001/api/productby", {
+  return axios.post("https://ecom-server-chi.vercel.app/api/productby", {
     sort,
     order,
     limit,

@@ -53,7 +53,7 @@ const Register = () => {
     //   return;
     // }
     try {
-      const res = await axios.post("http://localhost:5001/api/register", data);
+      const res = await axios.post("https://ecom-server-chi.vercel.app/api/register", data);
       console.log(res.data);
       toast.success("Register Success");
     } catch (err) {
