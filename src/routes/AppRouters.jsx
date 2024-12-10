@@ -6,7 +6,6 @@ import Cart from "../pages/Cart";
 import History from "../pages/user/History";
 import Checkout from "../pages/Checkout";
 import Login from "../pages/auth/Login";
-import Register from "../pages/auth/Registe";
 import Layout from "../layouts/Layout";
 import LayoutAdmin from "../layouts/LayoutAdmin";
 import Dashboard from "../pages/admin/Dashboard";
@@ -20,6 +19,7 @@ import ProtectRouteAdmin from "./ProtectRouteAdmin";
 import EditProduct from "../pages/admin/EditProduct";
 import Payment from "../pages/user/Payment";
 import ManageOrders from "../pages/admin/ManageOrders";
+import Register from "../pages/auth/Registe";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
       { path: "cart", element: <Cart /> },
       { path: "Checkout", element: <Checkout /> },
       { path: "login", element: <Login /> },
-      { path: "register", element: <Register /> },
+      { path: "register", element: <Register/> },
     ],
   },
   {
