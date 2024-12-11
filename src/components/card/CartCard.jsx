@@ -14,17 +14,17 @@ const CartCard = () => {
   );
   const getTotalPrice = useEconStore((state) => state.getTotalPrice);
   return (
-    <div>
-      <h1 className="text-2xl font-bold">ตะกร้าสินค้า</h1>
-      {/* Border */}
-      <div className="border p-2 ">
+    <div className="container mx-auto p-1">
+      <h1 className="text-2xl font-bold mb-4">Shopping cart</h1>
+      {/*  Card Container */}
+      <div className="border p-4 rounded-lg shadow-lg bg-white">
         {/* Card */}
         {carts.map((item, index) => (
           <div key={index} className="bg-white p-2 rounded-md shadow-md mb-2">
             {/* Row 1 */}
-            <div className="flex justify-between mb-2">
+            <div className="flex justify-between mb-4">
               {/* Left */}
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-4 items-center">
                 {item.images && item.images.length > 0 ? (
                   <img
                     src={item.images[0].url}
@@ -37,52 +37,56 @@ const CartCard = () => {
                 )}
 
                 <div>
-                  <p className="font-bold">{item.title}</p>
-                  <p className="text-sm">{item.description}</p>
+                  <p className="font-semibold">{item.title}</p>
+                  <p className="text-sm text-gray-600">{item.description}</p>
                 </div>
               </div>
               {/* Right */}
               <div
                 onClick={() => actionRemoveProduct(item.id)}
-                className="text-red-600 p-2"
+                className="text-red-600 p-2 cursor-pointer"
               >
                 <Trash2 />
               </div>
             </div>
 
             {/* Row 2 */}
-            <div className="flex justify-between ">
+            <div className="flex justify-between items-center">
               {/* Left */}
               <div className="border rounded-sm px-2 py-1 flex items-center">
                 <button
                   onClick={() => actionUpdateQuantity(item.id, item.count - 1)}
-                  className="px-2 py-2 bg-gray-200 rounded-sm hover:bg-gray-500"
+                  className="px-3 py-1 bg-gray-200 rounded-sm hover:bg-gray-300"
                 >
-                  <Minus size={15} />
+                  <Minus size={18} />
                 </button>
                 <span className="px-4">{item.count}</span>
                 <button
                   onClick={() => actionUpdateQuantity(item.id, item.count + 1)}
-                  className="px-2 py-2 bg-gray-200 rounded-sm hover:bg-gray-500"
+                  className="px-3 py-1 bg-gray-200 rounded-sm hover:bg-gray-300"
                 >
-                  <Plus size={15} />
+                  <Plus size={17} />
                 </button>
               </div>
               {/* Right */}
-              <div className="font-bold text-blue-500">{formatNumber(item.price * item.count)}</div>
+              <div className="text-xl font-bold text-blue-500">
+                {formatNumber(item.price * item.count)}
+              </div>
             </div>
           </div>
         ))}
         {/* Total */}
-        <div className="flex justify-between px-2">
-          <span>sum</span>
-          <span>{formatNumber(getTotalPrice())}</span>
+        <div className="flex justify-between border-t pt-4 mt-4">
+          <span className="text-lg font-semibold">Total amount</span>
+          <span className="text-xl font-bold text-blue-500">
+            {formatNumber(getTotalPrice())}
+          </span>
         </div>
 
         {/* Button */}
         <Link to="/cart">
-          <button className="mt-4 bg-blue-500 text-white w-full py-2 rounded-md shadow-md">
-            ขำระเงิน
+          <button className="mt-6 bg-blue-600 text-white w-full py-3 rounded-md hover:bg-blue-500 transition-all duration-300 shadow-md">
+            Payment
           </button>
         </Link>
       </div>

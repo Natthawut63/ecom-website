@@ -13,27 +13,27 @@ const Shop = () => {
   }, []);
 
   return (
-    <div className="flex">
-      {/* SearchBar */}
-      <div className="w-1/4 p-4 bg-gray-100 h-screen">
-        <SearchCart />
-      </div>
+    <div className="flex flex-col lg:flex-row">
+  {/* SearchBar */}
+  <div className="w-full lg:w-1/4 p-4 bg-gray-100 ">
+    <SearchCart />
+  </div>
 
-      {/* Products */}
-      <div className="w-1/2 p-4 h-screen overflow-y-auto">
-        <p className="text-2xl font-bold mb-4">Product</p>
-        <div className="flex flex-wrap gap-4">
-          {product.map((item, index) => (
-            <ProductCart key={index} item={item} />
-          ))}
-        </div>
-      </div>
-
-      {/* Cart */}
-      <div className="w-1/4 p-4 bg-gray-100 h-screen overflow-y-auto">
-        <CartCard />
-      </div>
+  {/* Products */}
+  <div className="w-full lg:w-1/2 p-4 h-screen overflow-y-auto">
+    <p className="text-2xl font-bold mb-4">Product</p>
+    <div className="flex flex-wrap gap-4">
+      {product.map((item, index) => (
+        <ProductCart key={index} item={item} />
+      ))}
     </div>
+  </div>
+
+  {/* Cart */}
+  <div className="w-full lg:w-1/4 p-4 bg-gray-100 h-screen overflow-y-auto">
+    <CartCard />
+  </div>
+</div>
   );
 };
 

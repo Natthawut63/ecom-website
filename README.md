@@ -17,7 +17,8 @@ https://lucide.dev/guide/installation
 react image resizer
 https://www.npmjs.com/package/react-image-file-resizer
 
-https://cloudinary.com/  ===> install backend
+https://cloudinary.com/  ===> install backend 
+helnaovie@gmail.com
  
 
 Slider => npm i rc-slider
@@ -63,3 +64,6 @@ npx prisma db push
 
 
 Firebase //realtime database
+
+
+npm install react-dotenv

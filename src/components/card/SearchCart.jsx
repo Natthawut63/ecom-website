@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import useEconStore from "../../store/ecom-store";
-
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { formatNumber } from "../../utils/number";
@@ -19,7 +18,7 @@ const SearchCart = () => {
   const [categorySelected, setCategorySelected] = useState([]);
   const [price, setPrice] = useState([100, 1000]);
   const [ok, setOk] = useState(false);
-  
+
   useEffect(() => {
     getCategory();
   }, []);
@@ -54,55 +53,75 @@ const SearchCart = () => {
     }
   };
 
-
   // Search by Price
   useEffect(() => {
     actionSearchFilters({ price: price });
   }, [ok]);
 
   const handlePrice = (e) => {
-    setPrice(e) 
+    setPrice(e);
     setTimeout(() => {
-      setOk(!ok)
-    },300)
+      setOk(!ok);
+    }, 300);
   };
 
   return (
-    <div>
-      <h1 className="text-xl font-bold mb-4"> Search</h1>
+    <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg">
+      <h1 className="text-2xl font-bold text-blue-600 mb-6">Search</h1>
+
       {/* Search by Text */}
       <input
         type="text"
-        className="border rounded-md w-full mb-4 px-2 "
-        placeholder="Search..."
+        className="w-full border border-gray-300 rounded-md p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="ค้นหาสินค้า..."
         onChange={(e) => setText(e.target.value)}
       />
-      <hr />
+      <hr className="mb-6" />
 
       {/* Search by Category */}
-      <div>
-        <h1 className=""> หมวดหมู่สินค้า</h1>
-        <div>
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold text-gray-700 mb-3">Category</h2>
+        <div className="space-y-2">
           {categories.map((item, index) => (
-            <div className="flex gap-2" key={index}>
-              <input type="checkbox" value={item.id} onChange={handleCheck} />
-              <label>{item.name}</label>
+            <div className="flex items-center gap-2" key={index}>
+              <input
+                type="checkbox"
+                value={item.id}
+                onChange={handleCheck}
+                className="accent-blue-500"
+              />
+              <label className="text-sm">{item.name}</label>
             </div>
           ))}
         </div>
       </div>
 
       {/* Search by Price */}
-      <div>
-        <h1 className=""> ราคา</h1>
-        <div>
-          <div className="flex justify-between">
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold text-gray-700 mb-3">Amount</h2>
+        <div className="mb-4">
+          <div className="flex justify-between text-sm text-gray-600">
             <span>Min : {formatNumber(price[0])}</span>
             <span>Max : {formatNumber(price[1])}</span>
           </div>
-          <Slider onChange={handlePrice} range min={0} max={100000} defaultValue={[10000,80000]}/>
+          <Slider
+            onChange={handlePrice}
+            range
+            min={0}
+            max={100000}
+            defaultValue={[10000, 80000]}
+            className="my-4"
+          />
         </div>
       </div>
+
+      {/* Apply Button */}
+      <button
+        onClick={() => actionSearchFilters({ price })}
+        className="w-full bg-blue-500 text-white py-2 rounded-md shadow-md hover:bg-blue-600 transition duration-300"
+      >
+        Search for products
+      </button>
     </div>
   );
 };

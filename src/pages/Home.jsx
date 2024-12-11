@@ -4,13 +4,17 @@ import BestSeller from "../components/home/BastSeller";
 import NewProduct from "../components/home/NewProduct";
 const Home = () => {
   return (
-    <div>
+    <div className="p-4">
       <ContentCarousel />
-      <p className="text-2xl font-bold text-center my-4">สินค้าขายดี</p>
-      <BestSeller />
-      <p className="text-2xl font-bold text-center my-4">สินค้ามาใหม่</p>
-      <NewProduct />
-      
+      <h2 className="text-3xl font-bold mt-10 text-center">Popular</h2>
+      <div className="max-w-7xl mx-auto px-4 py-2 pb-10">
+        <BestSeller />
+      </div>
+      <h2 className="text-3xl font-bold  text-center">New Arrivals</h2>
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        {" "}
+        <NewProduct />
+      </div>
     </div>
   );
 };

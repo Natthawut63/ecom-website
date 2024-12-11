@@ -52,7 +52,7 @@ const FormEditProduct = () => {
     try {
       const res = await updateProduct(token,id, form);
       console.log(res);
-      toast.success(`Product Added ${res.data.title} success!!!`);
+      toast.success(`Product Added ${res.data.title} success!!!` , {autoClose: 1000});
       navigate("/admin/product");
     } catch (err) {
       console.log(err);
@@ -62,7 +62,7 @@ const FormEditProduct = () => {
   return (
     <div className="container mx-auto p-4 bg-white shadow-md">
       <form onSubmit={handleSubmit}>
-        <h1>เพิ่มข้อมูลสินค้า</h1>
+        <h1>Add product information</h1>
         <input
           className="border"
           value={form.title}

@@ -4,7 +4,7 @@ import useEconStore from "../../store/ecom-store";
 import { toast } from "react-toastify";
 import { formatNumber } from "../../utils/number";
 import { dateFormat } from "../../utils/dateformat";
-import {getStatusColor} from "../../utils/color"
+import { getStatusColor } from "../../utils/color";
 const TableOrders = () => {
   const token = useEconStore((state) => state.token);
   const [orders, setOrders] = useState([]);
@@ -29,7 +29,7 @@ const TableOrders = () => {
       .then((res) => {
         // console.log(res.data);
         console.log(res);
-        toast.success("สถานะออเดอร์เปลี่ยนเรียบร้อยแล้ว");
+        toast.success("Order status has been changed", { autoClose: 1000 });
         handleGetOrders(token);
       })
       .catch((err) => {
@@ -37,36 +37,37 @@ const TableOrders = () => {
       });
   };
 
-  
-
   return (
-    <div className="container mx-auto p-4 bg-white shadow-md">
-      <div>
-        <table className=" w-full">
-          <thead>
+    <div className="container mx-auto p-6 bg-white shadow-lg rounded-lg">
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm text-left text-gray-500">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-100">
             <tr className="bg-gray-200 border">
-              <th>ลำดับ</th>
-              <th>ผู้ใช้งาน</th>
-              <th>วันที่</th>
-              <th>สินค้า</th>
-              <th>รวม</th>
-              <th>สถานะ</th>
-              <th>จัดการ</th>
+              <th className="px-4 py-2 border">ลำดับ</th>
+              <th className="px-4 py-2 border">ผู้ใช้งาน</th>
+              <th className="px-4 py-2 border">วันที่</th>
+              <th className="px-4 py-2 border">สินค้า</th>
+              <th className="px-4 py-2 border">รวม</th>
+              <th className="px-4 py-2 border">สถานะ</th>
+              <th className="px-4 py-2 border">จัดการ</th>
             </tr>
           </thead>
           <tbody>
             {orders?.map((item, index) => {
               return (
-                <tr key={index} className="border">
-                  <td className="text-center">{index + 1}</td>
-                  <td>
+                <tr
+                  key={index}
+                  className={`bg-white ${index % 2 === 0 ? "bg-gray-50" : ""}`}
+                >
+                  <td className="text-center px-4 py-2">{index + 1}</td>
+                  <td className="px-4 py-2">
                     <p>{item.orderedBy.email}</p>
                     <p>{item.orderedBy.address}</p>
                   </td>
 
-                  <td>{dateFormat(item.createdAt)}</td>
+                  <td className="px-4 py-2"> {dateFormat(item.createdAt)}</td>
 
-                  <td className="px-2 py-4">
+                  <td className="px-4 py-2">
                     {item.products?.map((product, index) => (
                       <li key={index}>
                         {product.product.title} {"  "}
@@ -77,19 +78,20 @@ const TableOrders = () => {
                       </li>
                     ))}
                   </td>
-                  <td>{formatNumber(item.cartTotal)}</td>
-                  <td>
+                  <td className="px-4 py-2">{formatNumber(item.cartTotal)}</td>
+                  <td className="px-4 py-2">
                     <span
-                      className={`px-2 py-1 ${getStatusColor(
+                      className={`px-4 py-2 rounded-full ${getStatusColor(
                         item.orderStatus
-                      )} rounded-full`}
+                      )}`}
                     >
                       {item.orderStatus}
                     </span>
                   </td>
 
-                  <td>
+                  <td className="px-4 py-2">
                     <select
+                      className="p-2 rounded-md bg-gray-100 border border-gray-300"
                       value={item.orderStatus}
                       onChange={(e) =>
                         handleChangeOrderStatus(token, item.id, e.target.value)

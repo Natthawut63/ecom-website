@@ -13,26 +13,30 @@ const ContentCarousel = () => {
 
   const hdlGetImeage = async () => {
     await axios
-      .get("https://picsum.photos/v2/list?page=1&limit=15")
+      .get(`${import.meta.env.VITE_API_ImageHome}`)
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   };
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto px-4">
       <Swiper
+      
         pagination={true}
         modules={[Pagination, Autoplay]}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
-        className="mySwiper h-80 object-cover 
-        rounded-md mb-4"
+        
+        className="mySwiper rounded-lg overflow-hidden mb-6 shadow-lg"
       >
         {data?.map((item, i) => (
           <SwiperSlide key={i}>
-            <img src={item.download_url} />
+            <img
+              src={item.download_url}
+              className="w-full h-80 object-cover rounded-lg"
+            />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -44,17 +48,20 @@ const ContentCarousel = () => {
           clickable: true,
         }}
         navigation={true}
-        loop={true}
+        
         modules={[Pagination, Autoplay, Navigation]}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
-        className="mySwiper object-cover rounded-md"
+        className="mySwiper rounded-lg overflow-hidden"
       >
         {data?.map((item, i) => (
           <SwiperSlide key={i}>
-            <img className="rounded-md" src={item.download_url} />
+            <img
+              className="w-full h-32 object-cover rounded-md shadow-md"
+              src={item.download_url}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
