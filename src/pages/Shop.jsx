@@ -22,7 +22,7 @@ const Shop = () => {
   {/* Products */}
   <div className="w-full lg:w-1/2 p-4 h-screen overflow-y-auto">
     <p className="text-2xl font-bold mb-4">Product</p>
-    <div className="flex flex-wrap gap-4">
+    <div className="flex flex-wrap justify-center  gap-4">
       {product.map((item, index) => (
         <ProductCart key={index} item={item} />
       ))}

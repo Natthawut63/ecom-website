@@ -15,14 +15,23 @@ const LoadingToRedirect = () => {
         return currentCount - 1;
       });
     }, 1000);
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, []);
 
-  if(redirect){
-    return <Navigate to={"/"} />    
+  if (redirect) {
+    return <Navigate to={"/"} />;
   }
 
-  return <div>No Permission , Redirct in {count}</div>;
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="text-center bg-white p-8 rounded-lg shadow-lg">
+        <p className="text-lg text-gray-700">
+          Redirecting in <span className="font-semibold">{count}</span>{" "}
+          seconds...
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default LoadingToRedirect;

@@ -56,19 +56,19 @@ const TableUsers = () => {
       <table className="w-full table-auto text-left">
         <thead>
           <tr className="bg-indigo-100">
-            <th className="px-4 py-3 border border-gray-300 text-sm font-semibold text-gray-700">
+            <th className="px-4 py-3  border-gray-300 text-sm font-semibold text-gray-700">
               No
             </th>
-            <th className="px-4 py-3 border border-gray-300 text-sm font-semibold text-gray-700">
+            <th className="px-4 py-3  border-gray-300 text-sm font-semibold text-gray-700">
               Email
             </th>
-            <th className="px-4 py-3 border border-gray-300 text-sm font-semibold text-gray-700">
+            <th className="px-4 py-3  border-gray-300 text-sm font-semibold text-gray-700">
               Permission
             </th>
-            <th className="px-4 py-3 border border-gray-300 text-sm font-semibold text-gray-700">
+            <th className="px-4 py-3  border-gray-300 text-sm font-semibold text-gray-700">
               Status
             </th>
-            <th className="px-4 py-3 border border-gray-300 text-sm font-semibold text-gray-700">
+            <th className="px-4 py-3  border-gray-300 text-sm font-semibold text-gray-700">
               Manage
             </th>
           </tr>

@@ -12,7 +12,7 @@ const ProductCart = ({ item }) => {
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="max-w-xs mx-auto"
+      // className="max-w-xs mx-auto"
     >
       <div className="border rounded-md shadow-md p-2 w-48 hover:shadow-xl transition-shadow duration-300 ">
         <div className="relative">

@@ -1,8 +1,7 @@
 import axios from "axios";
-// https://ecom-server-chi.vercel.app
-// http://localhost:5001
+
 export const getOrdersAdmin = async (token) => {
-  return axios.get(`${import.meta.env.VITE_API_URL}/admin/orders`, {
+  return axios.get(`${import.meta.env.VITE_API_URL}/api/admin/orders`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

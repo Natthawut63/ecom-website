@@ -40,9 +40,8 @@ const FormEditProduct = () => {
   };
 
   const handleChange = (e) => {
-    console.log(e.target.value, e.target.name);
     setForm({
-      ...form, //key : value
+      ...form,
       [e.target.name]: e.target.value,
     });
   };
@@ -50,9 +49,8 @@ const FormEditProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await updateProduct(token,id, form);
-      console.log(res);
-      toast.success(`Product Added ${res.data.title} success!!!` , {autoClose: 1000});
+      const res = await updateProduct(token, id, form);
+      toast.success(`Product Updated: ${res.data.title} success!!!`, { autoClose: 1000 });
       navigate("/admin/product");
     } catch (err) {
       console.log(err);
@@ -60,63 +58,73 @@ const FormEditProduct = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 bg-white shadow-md">
-      <form onSubmit={handleSubmit}>
-        <h1>Add product information</h1>
-        <input
-          className="border"
-          value={form.title}
-          onChange={handleChange}
-          placeholder="Title"
-          name="title"
-        />
-        <input
-          className="border"
-          value={form.description}
-          onChange={handleChange}
-          placeholder="Description"
-          name="description"
-        />
-        <input
-          type="number"
-          className="border"
-          value={form.price}
-          onChange={handleChange}
-          placeholder="Price"
-          name="price"
-        />
-        <input
-          type="number"
-          className="border"
-          value={form.quantity}
-          onChange={handleChange}
-          placeholder="quantity"
-          name="quantity"
-        />
-        <select
-          required
-          className="border"
-          name="categoryId"
-          onChange={handleChange}
-          value={form.categoryId}
-        >
-          <option value="" disabled>
-            {" "}
-            Please Select
-          </option>
-          {category.map((item, index) => (
-            <option key={index} value={item.id}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-        <hr />
-        {/* upload file */}
+    <div className="container mx-auto p-6 bg-white shadow-lg rounded-lg">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <h1 className="text-2xl font-semibold text-gray-800">Edit Product Information</h1>
+
+        <div className="space-y-4">
+        <p>Product Title :</p>
+          <input
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={form.title}
+            onChange={handleChange}
+            placeholder="Product Title"
+            name="title"
+          />
+         <p>description :</p>
+          <input
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={form.description}
+            onChange={handleChange}
+            placeholder="Product Description"
+            name="description"
+          />
+          <p>Price :</p>
+          <input
+            type="number"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={form.price}
+            onChange={handleChange}
+            placeholder="Price"
+            name="price"
+          />
+          <p>Quantity :</p>
+          <input
+            type="number"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={form.quantity}
+            onChange={handleChange}
+            placeholder="Quantity"
+            name="quantity"
+          />
+          <p>Category :</p>
+          <select
+            required
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            name="categoryId"
+            onChange={handleChange}
+            value={form.categoryId}
+          >
+            <option value="" disabled>Please Select a Category</option>
+            {category.map((item, index) => (
+              <option key={index} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <hr className="border-gray-300 my-6" />
+        
+        {/* Upload File Component */}
         <Uploadfile form={form} setForm={setForm} />
 
-        <button className="bg-blue-500">เเก้ไขสินค้า</button>
-        <hr />
-        <br />
+        <button
+          type="submit"
+          className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          Save Changes
+        </button>
       </form>
     </div>
   );

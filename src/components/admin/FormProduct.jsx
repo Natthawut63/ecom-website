@@ -6,6 +6,7 @@ import Uploadfile from "./Uploadfile";
 import { Link } from "react-router-dom";
 import { formatNumber } from "../../utils/number";
 import { dateFormat } from "../../utils/dateformat";
+
 const initialState = {
   title: "",
   description: "",
@@ -60,7 +61,7 @@ const FormProduct = () => {
 
   const handleDelete = async (id) => {
     try {
-      if (window.confirm("คุณต้องการลบสินค้าหรือไม่")) {
+      if (window.confirm("Do you want to delete the product?")) {
         const res = await deleteProduct(token, id);
         console.log(res);
         toast.success(`Product Deleted ${res.data.title} success !`, {autoClose: 1000});
@@ -73,7 +74,7 @@ const FormProduct = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 bg-white shadow-lg rounded-md w-full">
+    <div className="container mx-auto p-2 bg-white shadow-lg rounded-md w-full">
       <form onSubmit={handleSubmit} className="space-y-6">
         <h1 className="text-3xl font-bold text-center">Manage Product</h1>
 
