@@ -12,6 +12,45 @@ const Login = () => {
     password: "",
   });
 
+  const demoUserHandleSubmit = async (e) => {
+    e.preventDefault();
+    setForm({
+      ...form,
+      email: "user@demo.com",
+      password: "12345678",
+    });
+
+    try {
+      const res = await actionLogin(form);
+      const role = res.data.payload.role;
+      roleRedirect(role);
+      toast.success("Login Success", { autoClose: 1000 });
+    } catch (err) {
+      const errMsg = err.response?.data?.msg;
+      toast.error('Wait ...', { autoClose: 1000 });
+      console.log(err);
+    }
+  };
+  const demoAdminHandleSubmit = async (e) => {
+    e.preventDefault();
+    setForm({
+      ...form,
+      email: "admin@demo.com",
+      password: "12345678",
+    });
+    console.log(form);
+    try {
+      const res = await actionLogin(form);
+      const role = res.data.payload.role;
+      roleRedirect(role);
+      toast.success("Login Success", { autoClose: 1000 });
+    } catch (err) {
+      const errMsg = err.response?.data?.msg;
+      toast.error('Wait ...', { autoClose: 1000 });
+      console.log(err);
+    }
+  };
+
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -21,7 +60,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const res = await actionLogin(form);
       const role = res.data.payload.role;
@@ -44,6 +82,7 @@ const Login = () => {
 
   return (
     // bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+
     <div className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md shadow-lg bg-white p-8 rounded-xl">
         <h1 className="text-3xl font-semibold text-center my-6 text-gray-700">
@@ -96,6 +135,25 @@ const Login = () => {
             </div>
           </div>
         </form>
+
+       <div className="flex justify-start">
+       <form onSubmit={demoUserHandleSubmit}>
+          <button
+            type="submit"
+            className="text-indigo-600 hover:text-indigo-700 text-sm pr-5"
+          >
+            demo user
+          </button>
+        </form>
+        <form onSubmit={demoAdminHandleSubmit}>
+          <button
+            type="submit"
+            className=" text-indigo-600 hover:text-indigo-700 text-sm"
+          >
+            demo admin
+          </button>
+        </form>
+       </div>
       </div>
     </div>
   );

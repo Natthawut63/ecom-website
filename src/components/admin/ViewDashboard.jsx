@@ -9,7 +9,6 @@ const ViewDashboard = () => {
   const [orders, setOrders] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
   const [users, setUsers] = useState([]);
-  console.log(products);
 
   useEffect(() => {
     handleGetOrders();
