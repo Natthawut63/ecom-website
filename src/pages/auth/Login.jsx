@@ -27,7 +27,7 @@ const Login = () => {
       toast.success("Login Success", { autoClose: 1000 });
     } catch (err) {
       const errMsg = err.response?.data?.msg;
-      toast.error('Wait ...', { autoClose: 1000 });
+      toast.error('Again ...', { autoClose: 1000 });
       console.log(err);
     }
   };
@@ -46,7 +46,7 @@ const Login = () => {
       toast.success("Login Success", { autoClose: 1000 });
     } catch (err) {
       const errMsg = err.response?.data?.msg;
-      toast.error('Wait ...', { autoClose: 1000 });
+      toast.error('Again ...', { autoClose: 1000 });
       console.log(err);
     }
   };
