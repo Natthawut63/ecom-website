@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   FolderKanban,
@@ -8,8 +8,18 @@ import {
   ClockArrowUp,
   LogOut,
 } from "lucide-react";
+import useEconStore from "../../store/ecom-store";
+import { toast } from "react-toastify";
 
 const SiderbarAdmin = () => {
+  const logout = useEconStore((state) => state.logout);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout(); // clear state
+    navigate("/"); // redirect ไปหน้า home หรือ login
+    toast.success("Logout Success", { autoClose: 1000 });
+  };
   return (
     <div className="bg-gradient-to-b from-gray-800 to-gray-900 w-64 text-gray-100 flex flex-col h-screen">
       {/* Header Section */}
@@ -79,17 +89,13 @@ const SiderbarAdmin = () => {
         </NavLink>
       </nav>
       <div className="px-4 py-4">
-        <NavLink
-          to={""}
-          className={({ isActive }) =>
-            isActive
-              ? "bg-gray-900 text-white px-4 py-2 rounded-lg shadow-md flex items-center hover:bg-gray-700 transition duration-200"
-              : "text-gray-300 px-4 py-2 hover:bg-gray-700 hover:text-white rounded-lg flex items-center transition duration-200"
-          }
+        <button
+          onClick={handleLogout}
+          className="w-full text-gray-300 px-4 py-2 hover:bg-gray-700 hover:text-white rounded-lg flex items-center transition duration-200"
         >
           <LogOut className="mr-3" size={20} />
           Logout
-        </NavLink>
+        </button>
       </div>
     </div>
   );

@@ -10,17 +10,22 @@ import { toast } from "react-toastify";
 const TableUsers = () => {
   const token = useEconStore((state) => state.token);
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     handleGetUsers(token);
   }, []);
 
-  const handleGetUsers = (token) => {
-    getListAllUsers(token)
-      .then((res) => {
-        setUsers(res.data);
-      })
-      .catch((err) => console.log(err));
+    const handleGetUsers = async (token) => {
+    setLoading(true); // start
+    try {
+      const res = await getListAllUsers(token);
+      setUsers(res.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false); //end load
+    }
   };
 
   const handleChangeUserStatus = (userId, userStatus) => {
@@ -50,6 +55,17 @@ const TableUsers = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-[300px] flex items-center justify-center bg-white rounded-lg shadow-lg p-6">
+        <div className="flex flex-col items-center space-y-4">
+          <div className="w-10 h-10 border-4 border-indigo-500 border-dashed rounded-full animate-spin"></div>
+          <p className="text-gray-700 text-lg font-medium">Loading data...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg">

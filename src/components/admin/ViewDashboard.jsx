@@ -9,37 +9,50 @@ const ViewDashboard = () => {
   const [orders, setOrders] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
   const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    handleGetOrders();
-    handleGetUsers();
-  }, []);
+  const [loading, setLoading] = useState(true); // <-- new
 
   const handleGetOrders = async () => {
-    getOrdersAdmin(token)
-      .then((res) => {
-        setOrders(res.data);
-        // console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    try {
+      const res = await getOrdersAdmin(token);
+      setOrders(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
-  const handleGetUsers = () => {
-    getListAllUsers(token)
-      .then((res) => {
-        setUsers(res.data);
-        // console.log(res.data);
-      })
-      .catch((err) => console.log(err));
+
+  const handleGetUsers = async () => {
+    try {
+      const res = await getListAllUsers(token);
+      const enabled = res.data.filter((user) => user.enabled === true);
+      setUsers(enabled);
+    } catch (err) {
+      console.log(err);
+    }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await Promise.all([handleGetOrders(), handleGetUsers()]);
+      setLoading(false); // <-- done loading
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const total = orders.reduce((sum, item) => sum + item.cartTotal, 0);
     setCartTotal(total);
-    const enabled = users.filter((user) => user.enabled === true);
-    setUsers(enabled);
   }, [orders]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="flex flex-col items-center space-y-4">
+          <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
+          <p className="text-lg text-gray-600">Loading data...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-gray-100 min-h-screen p-6">

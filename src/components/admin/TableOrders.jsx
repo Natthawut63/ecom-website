@@ -8,20 +8,22 @@ import { getStatusColor } from "../../utils/color";
 const TableOrders = () => {
   const token = useEconStore((state) => state.token);
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     handleGetOrders(token);
   }, []);
 
   const handleGetOrders = async () => {
-    getOrdersAdmin(token)
-      .then((res) => {
-        // console.log(res.data);
-        setOrders(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setLoading(true);
+    try {
+      const res = await getOrdersAdmin(token);
+      setOrders(res.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChangeOrderStatus = async (token, orderId, orderStatus) => {
@@ -36,6 +38,17 @@ const TableOrders = () => {
         console.log(err);
       });
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-[300px] flex items-center justify-center bg-white shadow-lg rounded-lg p-6">
+        <div className="flex flex-col items-center space-y-4">
+          <div className="w-10 h-10 border-4 border-indigo-500 border-dashed rounded-full animate-spin"></div>
+          <p className="text-gray-700 text-lg font-medium">Loading orders...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto p-6 bg-white shadow-lg rounded-lg">

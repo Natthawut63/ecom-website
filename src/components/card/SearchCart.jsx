@@ -108,8 +108,8 @@ const SearchCart = () => {
             onChange={handlePrice}
             range
             min={0}
-            max={100000}
-            defaultValue={[10000, 80000]}
+            max={1000}
+            defaultValue={[0, 1000]}
             className="my-4"
           />
         </div>
