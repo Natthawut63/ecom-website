@@ -9,37 +9,56 @@ const ProductCart = ({ item }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.2 }}
-    // className="max-w-xs mx-auto"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
     >
-      <div className="border rounded-md shadow-md p-2 w-48 hover:shadow-xl transition-shadow duration-300 ">
-        <div className="relative">
+      <div className="bg-white border border-gray-100 rounded-xl shadow-soft p-3 w-full hover:shadow-soft-lg hover:border-gray-200 transition-all duration-300 group">
+        {/* Image Container */}
+        <div className="relative overflow-hidden rounded-lg bg-gray-50">
           {item.images && item.images.length > 0 ? (
             <img
               src={item.images[0].url}
-              className="rounded-md h-24 object-cover hover:scale-105 hover:duration-200 transition-transform"
+              alt={item.title}
+              className="w-full h-32 md:h-36 object-cover group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
-            <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
+            <div className="w-full h-32 md:h-36 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
               No Image
             </div>
           )}
-        </div>
 
-        <div className="py-3">
-          <p className="text-lg font-semibold text-gray-800 truncate">{item.title}</p>
-          <p className="text-sm text-gray-600 truncate">{item.description}</p>
-        </div>
-
-        <div className="flex items-center justify-between px-2">
-          <span className="text-xl font-bold text-blue-600">{formatNumber(item.price)}</span>
+          {/* Quick Add Button (shows on hover) */}
           <button
             onClick={() => actionAddtoCart(item)}
-            className="bg-blue-500 text-white rounded-md p-2 hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center"
+            className="absolute bottom-2 right-2 bg-primary-600 text-white rounded-lg p-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-primary-700 shadow-md"
           >
-            <ShoppingCart size={15} />
+            <ShoppingCart size={16} />
+          </button>
+        </div>
+
+        {/* Product Info */}
+        <div className="pt-3 pb-1">
+          <h3 className="font-medium text-gray-800 truncate text-sm md:text-base">
+            {item.title}
+          </h3>
+          <p className="text-xs text-gray-500 truncate mt-0.5">
+            {item.description}
+          </p>
+        </div>
+
+        {/* Price & Action */}
+        <div className="flex items-center justify-between pt-2 border-t border-gray-50">
+          <div>
+            <span className="text-lg font-bold text-primary-600">
+              ฿{formatNumber(item.price)}
+            </span>
+          </div>
+          <button
+            onClick={() => actionAddtoCart(item)}
+            className="md:hidden bg-primary-50 text-primary-600 rounded-lg p-2 hover:bg-primary-100 transition-colors"
+          >
+            <ShoppingCart size={16} />
           </button>
         </div>
       </div>
