@@ -54,7 +54,7 @@ const FormProduct = () => {
       setForm(initialState);
       getProduct(100);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -67,7 +67,7 @@ const FormProduct = () => {
         setForm(initialState);
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -208,7 +208,7 @@ const FormProduct = () => {
                   <td className="px-6 py-4 font-medium text-gray-800">฿{formatNumber(item.price)}</td>
                   <td className="px-6 py-4">
                     <span className={`inline-flex px-2 py-1 rounded-full text-xs font-medium ${item.quantity > 10 ? 'bg-emerald-50 text-emerald-700' :
-                        item.quantity > 0 ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-red-700'
+                      item.quantity > 0 ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-red-700'
                       }`}>
                       {item.quantity}
                     </span>

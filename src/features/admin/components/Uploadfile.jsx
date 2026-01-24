@@ -36,7 +36,7 @@ const Uploadfile = ({ form, setForm }) => {
             //endpoint backend
             uploadFiles(token, data)
               .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 allFiles.push(res.data); //push to array
                 setForm({
                   ...form,
@@ -49,7 +49,7 @@ const Uploadfile = ({ form, setForm }) => {
               })
               .catch((err) => {
                 setIsLoading(true);
-                console.log(err);
+                // console.log(err);
               });
           },
           "base64"
@@ -62,7 +62,7 @@ const Uploadfile = ({ form, setForm }) => {
     const images = form.images;
     removeFiles(token, public_id)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         const filterImages = images.filter((item) => {
           return item.public_id !== public_id;
         });
@@ -73,7 +73,7 @@ const Uploadfile = ({ form, setForm }) => {
         });
         toast.success(res.data, { autoClose: 1000 });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => { });
   };
 
   return (

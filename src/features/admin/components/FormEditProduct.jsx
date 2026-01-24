@@ -15,6 +15,7 @@ const initialState = {
 };
 
 const FormEditProduct = () => {
+  // console.log(err);
   const token = useEcomStore((state) => state.token);
   const getCategory = useEcomStore((state) => state.getCategory);
   const category = useEcomStore((state) => state.categories);
@@ -32,10 +33,8 @@ const FormEditProduct = () => {
   const fetchProduct = async (token, id, form) => {
     try {
       const res = await readProduct(token, id, form);
-      console.log(res);
       setForm(res.data);
     } catch (err) {
-      console.log(err);
     }
   };
 
@@ -53,7 +52,6 @@ const FormEditProduct = () => {
       toast.success(`Product Updated: ${res.data.title} success!!!`, { autoClose: 1000 });
       navigate("/admin/product");
     } catch (err) {
-      console.log(err);
     }
   };
 

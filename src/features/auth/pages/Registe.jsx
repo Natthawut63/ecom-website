@@ -137,8 +137,8 @@ const Register = () => {
                         <div
                           key={index}
                           className={`h-1.5 flex-1 rounded-full transition-colors ${index < passwordScore
-                              ? passwordStrength.color
-                              : "bg-gray-200"
+                            ? passwordStrength.color
+                            : "bg-gray-200"
                             }`}
                         />
                       ))}
