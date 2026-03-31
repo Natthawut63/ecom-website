@@ -1,0 +1,18 @@
+.mySwiper {
+    width: 100%; /* ให้ขนาดเต็มพื้นที่ */
+    height: 300px; /* ปรับความสูงตามต้องการ */
+    display: flex; /* ใช้ flexbox */
+    justify-content: center; /* จัดตำแหน่งในแนวนอน */
+    align-items: center; /* จัดตำแหน่งในแนวตั้ง */
+  }
+  
+  .swiper-wrapper {
+    display: flex; /* ใช้ flexbox เพื่อจัดสไลด์ในแนวนอน */
+    justify-content: center; /* จัดตำแหน่งสไลด์ให้ตรงกลาง */
+  }
+  
+  .swiper-slide {
+    display: flex; /* ใช้ flexbox ในการจัดสไลด์ */
+    justify-content: center; /* ให้เนื้อหาภายในสไลด์อยู่ตรงกลาง */
+    align-items: center; /* ให้เนื้อหาภายในสไลด์อยู่กลางแนวตั้ง */
+  }
