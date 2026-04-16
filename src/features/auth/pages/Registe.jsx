@@ -100,8 +100,9 @@ const Register = () => {
                   <input
                     {...register("email")}
                     type="email"
+                    disabled
                     placeholder="Enter your email"
-                    className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-gray-50 focus:bg-white ${errors.email ? "border-red-300" : "border-gray-200"
+                    className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-gray-200 text-gray-500 cursor-not-allowed ${errors.email ? "border-red-300" : "border-gray-200"
                       }`}
                   />
                 </div>
@@ -120,8 +121,9 @@ const Register = () => {
                   <input
                     {...register("password")}
                     type="password"
+                    disabled
                     placeholder="Create a password"
-                    className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-gray-50 focus:bg-white ${errors.password ? "border-red-300" : "border-gray-200"
+                    className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-gray-200 text-gray-500 cursor-not-allowed ${errors.password ? "border-red-300" : "border-gray-200"
                       }`}
                   />
                 </div>
@@ -160,8 +162,9 @@ const Register = () => {
                   <input
                     {...register("confirmPassword")}
                     type="password"
+                    disabled
                     placeholder="Confirm your password"
-                    className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-gray-50 focus:bg-white ${errors.confirmPassword ? "border-red-300" : "border-gray-200"
+                    className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-gray-200 text-gray-500 cursor-not-allowed ${errors.confirmPassword ? "border-red-300" : "border-gray-200"
                       }`}
                   />
                   {watch().confirmPassword &&
@@ -177,7 +180,7 @@ const Register = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={isLoading}
+                disabled={true}
                 className="w-full py-3 bg-primary-600 text-white rounded-xl font-semibold hover:bg-primary-700 transition-all duration-200 flex items-center justify-center gap-2 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
@@ -188,6 +191,16 @@ const Register = () => {
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
+              </button>
+
+              {/* Admin Trial Button */}
+              <button
+                type="button"
+                onClick={() => navigate("/login")}
+                className="w-full py-3 bg-gray-800 text-white rounded-xl font-semibold hover:bg-gray-900 transition-all duration-200 flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+              >
+                Dashboard Admin
+                <ArrowRight className="w-4 h-4" />
               </button>
             </form>
 

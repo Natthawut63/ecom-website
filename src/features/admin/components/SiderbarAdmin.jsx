@@ -23,11 +23,11 @@ const SiderbarAdmin = () => {
   };
 
   const menuItems = [
-    { to: "/admin", icon: LayoutDashboard, label: "Dashboard", end: true },
-    { to: "manage", icon: Users, label: "Users" },
-    { to: "category", icon: Layers, label: "Categories" },
-    { to: "product", icon: Package, label: "Products" },
-    { to: "orders", icon: ShoppingCart, label: "Orders" },
+    { to: "/admin", icon: LayoutDashboard, label: "Dashboard", end: true, disabled: false },
+    { to: "manage", icon: Users, label: "Users", disabled: true },
+    { to: "category", icon: Layers, label: "Categories", disabled: false },
+    { to: "product", icon: Package, label: "Products", disabled: false },
+    { to: "orders", icon: ShoppingCart, label: "Orders", disabled: true },
   ];
 
   const navLinkClass = ({ isActive }) =>
@@ -54,15 +54,25 @@ const SiderbarAdmin = () => {
           Menu
         </p>
         {menuItems.map((item) => (
-          <NavLink
-            key={item.to}
-            to={item.to}
-            end={item.end}
-            className={navLinkClass}
-          >
-            <item.icon className="w-5 h-5" />
-            <span className="font-medium">{item.label}</span>
-          </NavLink>
+          item.disabled ? (
+            <div
+              key={item.to}
+              className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 cursor-not-allowed opacity-50"
+            >
+              <item.icon className="w-5 h-5" />
+              <span className="font-medium">{item.label}</span>
+            </div>
+          ) : (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              className={navLinkClass}
+            >
+              <item.icon className="w-5 h-5" />
+              <span className="font-medium">{item.label}</span>
+            </NavLink>
+          )
         ))}
       </nav>
 

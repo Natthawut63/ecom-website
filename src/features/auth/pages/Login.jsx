@@ -23,19 +23,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    try {
-      const res = await actionLogin(form);
-      const role = res.data.payload.role;
-      roleRedirect(role);
-      toast.success("Login Success", { autoClose: 1000 });
-    } catch (err) {
-      const errMsg = err.response?.data?.msg;
-      toast.error(errMsg || "Login failed", { autoClose: 1000 });
-      console.log(err);
-    } finally {
-      setIsLoading(false);
-    }
+    navigate("/admin");
   };
 
   const demoLogin = async (email, password) => {
@@ -117,8 +105,9 @@ const Login = () => {
                     name="email"
                     value={form.email}
                     onChange={handleChange}
+                    disabled
                     placeholder="Enter your email"
-                    className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-gray-50 focus:bg-white"
+                    className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-gray-200 text-gray-500 cursor-not-allowed"
                   />
                 </div>
               </div>
@@ -135,8 +124,9 @@ const Login = () => {
                     name="password"
                     value={form.password}
                     onChange={handleChange}
+                    disabled
                     placeholder="Enter your password"
-                    className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-gray-50 focus:bg-white"
+                    className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-gray-200 text-gray-500 cursor-not-allowed"
                   />
                 </div>
               </div>
@@ -144,47 +134,12 @@ const Login = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={isLoading}
-                className="w-full py-3 bg-primary-600 text-white rounded-xl font-semibold hover:bg-primary-700 transition-all duration-200 flex items-center justify-center gap-2 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 bg-gray-800 text-white rounded-xl font-semibold hover:bg-gray-900 transition-all duration-200 flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
               >
-                {isLoading ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                ) : (
-                  <>
-                    Sign In
-                    <ArrowRight className="w-4 h-4" />
-                  </>
-                )}
+                Dashboard Admin
+                <ArrowRight className="w-4 h-4" />
               </button>
             </form>
-
-            {/* Divider */}
-            <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-gray-500">or continue with</span>
-              </div>
-            </div>
-
-            {/* Demo Accounts */}
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                onClick={() => demoLogin("user@demo.com", "12345678")}
-                disabled={isLoading}
-                className="py-2.5 px-4 border border-gray-200 rounded-xl text-gray-600 font-medium hover:bg-gray-50 transition-colors text-sm disabled:opacity-50"
-              >
-                Demo User
-              </button>
-              <button
-                onClick={() => demoLogin("admin@demo.com", "12345678")}
-                disabled={isLoading}
-                className="py-2.5 px-4 border border-gray-200 rounded-xl text-gray-600 font-medium hover:bg-gray-50 transition-colors text-sm disabled:opacity-50"
-              >
-                Demo Admin
-              </button>
-            </div>
 
             {/* Register Link */}
             <p className="text-center mt-6 text-gray-600">

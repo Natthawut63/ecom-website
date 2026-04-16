@@ -95,8 +95,7 @@ const Uploadfile = ({ form, setForm }) => {
             />
             {/* ()=> call function , no runtime */}
             <span
-              onClick={() => handleDelete(item.public_id)}
-              className="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full cursor-pointer hover:bg-red-700"
+              className="absolute top-0 right-0 bg-gray-400 text-white p-1 rounded-full cursor-not-allowed"
             >
               X
             </span>
@@ -106,9 +105,9 @@ const Uploadfile = ({ form, setForm }) => {
       <div className="text-center">
         <label
           htmlFor="file-upload"
-          className="block text-blue-500 font-semibold cursor-pointer hover:text-blue-700"
+          className="block text-gray-400 font-semibold cursor-not-allowed"
         >
-          <span className="text-lg">Click to upload images</span>
+          <span className="text-lg">Image upload disabled</span>
         </label>
         <input
           id="file-upload"
@@ -117,6 +116,7 @@ const Uploadfile = ({ form, setForm }) => {
           name="images"
           multiple
           className="hidden"
+          disabled
         />
       </div>
     </div>

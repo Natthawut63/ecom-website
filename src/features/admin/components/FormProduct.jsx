@@ -88,22 +88,24 @@ const FormProduct = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Product Name</label>
               <input
                 type="text"
-                className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-100 text-gray-400 cursor-not-allowed"
                 value={form.title}
                 onChange={handleChange}
                 placeholder="Enter product name"
                 name="title"
                 required
+                disabled
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Category</label>
               <select
                 required
-                className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white"
+                className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-100 text-gray-400 cursor-not-allowed"
                 name="categoryId"
                 onChange={handleChange}
                 value={form.categoryId}
+                disabled
               >
                 <option value="" disabled>Select category</option>
                 {category.map((item, index) => (
@@ -117,12 +119,13 @@ const FormProduct = () => {
             <label className="block text-sm font-medium text-gray-700 mb-1.5">Description</label>
             <input
               type="text"
-              className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-100 text-gray-400 cursor-not-allowed"
               value={form.description}
               onChange={handleChange}
               placeholder="Enter product description"
               name="description"
               required
+              disabled
             />
           </div>
 
@@ -131,24 +134,26 @@ const FormProduct = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Price (฿)</label>
               <input
                 type="number"
-                className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-100 text-gray-400 cursor-not-allowed"
                 value={form.price}
                 onChange={handleChange}
                 placeholder="0"
                 name="price"
                 required
+                disabled
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Quantity</label>
               <input
                 type="number"
-                className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full border border-gray-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-100 text-gray-400 cursor-not-allowed"
                 value={form.quantity}
                 onChange={handleChange}
                 placeholder="0"
                 name="quantity"
                 required
+                disabled
               />
             </div>
           </div>
@@ -160,8 +165,9 @@ const FormProduct = () => {
 
           <div className="pt-2">
             <button
-              type="submit"
-              className="bg-indigo-600 text-white py-2.5 px-6 rounded-lg hover:bg-indigo-700 font-medium transition-colors flex items-center gap-2"
+              type="button"
+              disabled
+              className="bg-gray-300 text-gray-500 py-2.5 px-6 rounded-lg font-medium cursor-not-allowed flex items-center gap-2"
             >
               <Plus className="w-4 h-4" />
               Add Product
@@ -217,16 +223,16 @@ const FormProduct = () => {
                   <td className="px-6 py-4 text-gray-500 text-sm">{dateFormat(item.updatedAt)}</td>
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-end gap-2">
-                      <Link
-                        to={"/admin/product/" + item.id}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 text-amber-600 rounded-lg text-sm font-medium hover:bg-amber-100 transition-colors"
+                      <button
+                        disabled
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 text-gray-400 rounded-lg text-sm font-medium cursor-not-allowed"
                       >
                         <Pencil className="w-3.5 h-3.5" />
                         Edit
-                      </Link>
+                      </button>
                       <button
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-600 rounded-lg text-sm font-medium hover:bg-red-100 transition-colors"
-                        onClick={() => handleDelete(item.id)}
+                        disabled
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 text-gray-400 rounded-lg text-sm font-medium cursor-not-allowed"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                         Delete
